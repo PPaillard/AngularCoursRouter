@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  public studentName : string | null = "";
+
+  constructor(private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
+      this.studentName = params.get("studentName");
+      if(this.studentName == null) {
+        // on redirige vers /home
+      }
+    }
+
+    )
   }
 
 }
